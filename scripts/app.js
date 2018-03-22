@@ -27,10 +27,10 @@
         $scope.showPDF = false;
 
         $scope.config = {
-            username: "afabre",
-            password: "Nexworld201604",
-            host: "jira.cddelis.com",
-            port: "8080"
+            username: "",
+            password: "",
+            host: "",
+            port: ""
         };
 
         $scope.issues = [];
