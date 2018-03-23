@@ -1,6 +1,3 @@
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../node_modules/font-awesome/css/font-awesome.css";
-
 .issue-container {
   border: 1px solclass #000;
   display:flex;
