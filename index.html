@@ -6,14 +6,21 @@
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css"/>
     <link rel="stylesheet" href="scripts/index.css">
 
+    <!-- Angular -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <!-- html2canva -->
     <script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
+    <!-- pdfmake -->
     <script src="node_modules/pdfmake/build/pdfmake.min.js"></script>
     <script src="node_modules/pdfmake/build/vfs_fonts.js"></script>
+    <!-- bootstrap -->
+    <script src="node_modules/jquery/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
 
     <script src="scripts/app.js"></script>
@@ -24,41 +31,82 @@
 </head>
 <body>
 <div class="page-container">
-    <div ng-controller="MainController">
-        <h1>Jira Printer</h1>
-        <div>
-            <p>Print your Jira issues for your agile Scrum Board</p>
-            <p>Simply add the issues id you want to print and click 'Download issues'
-            then 'Print issues' to get the PDF file to print</p>
+    <div class="container" ng-controller="MainController">
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <h1 class="text-center">Jira Printer</h1>
+            <div class="text-center">
+                <p>Print your Jira issues for your agile Scrum Board</p>
+                <hr/>
+                <p>Simply add the issues id you want to print and click 'Download issues'
+                then 'Print issues' to get the PDF file to print</p>
+            </div>
         </div>
+
+        <!-- Login info -->
         <div>
-            <form novalidate class="simple-form">
-                <label>Username: <input type="text" ng-model="config.username" /></label><br />
-                <label>Password: <input type="password" ng-model="config.password" /></label><br />
-                <label>Host: <input type="text" ng-model="config.host" /></label><br />
-                <label>Port: <input type="text" ng-model="config.port" /></label><br />
+            <h2>Login information</h2>
+            <form novalidate class="form-horizontal">
+                <div class="form-group">
+                    <label for="userName" class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="config.username" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" ng-model="config.password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="host" class="col-sm-2 col-form-label">Host</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="config.host" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="port" class="col-sm-2 col-form-label">Port</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="config.port" />
+                    </div>
+                </div>
             </form>
         </div>
+        <hr/>
+
+        <!-- Input issues -->
         <div>
-            <table>
-                <tr>
-                    <th>Issue ID</th>
-                    <th>Remove</th>
-                </tr>
-                <tr>
-                    <th><input type="text" ng-model="inputIssueID"/></th>
-                    <th><label ng-click="addIssue($index)">Add</label></th>
-                </tr>
-                <tr ng-repeat="issue in issues">
-                    <th>{{issue.id}}</th>
-                    <th><label ng-click="removeIssue($index)">Remove</label></th>
-                </tr>
-            </table>
+            <h2>Input issues</h2>
+            <div>
+                <table class="table table-stripped table-bordered table-condensed">
+                    <thead class="thead">
+                        <tr>
+                            <th>Issue ID</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <tr class="active">
+                            <td><input type="text" ng-model="inputIssueID"/></td>
+                            <td><button type="button" class="btn btn-success" ng-click="addIssue($index)">Add</button></td>
+                        </tr>
+                        <tr ng-repeat="issue in issues">
+                            <td>{{issue.id}}</td>
+                            <td><button type="button" class="btn btn-danger" ng-click="removeIssue($index)">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <input type="submit" ng-click="printIssues()" value="Download issues"/>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <input type="submit" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
+            </div>
         </div>
-        <div>
-            <input type="submit" ng-click="printIssues()" value="Download issues"/>
-            <input type="submit" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
-        </div>
+        <hr/>
+
+        <!-- Printed issues -->
         <div ng-if="showPDF" id="pdf">
             <div class="issue-container" ng-repeat="issues in formattedIssues">
                 <div class="issue" ng-repeat="issue in issues">

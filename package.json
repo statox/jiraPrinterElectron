@@ -37,7 +37,11 @@
     "grunt-search": "^0.1.8"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-alpha.10",
-    "pdfmake": "^0.1.36"
+    "jquery": "^1.9.1",
+    "pdfmake": "^0.1.36",
+    "popper.js": "^1.14.1"
   }
 }
