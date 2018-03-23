@@ -79,6 +79,11 @@
         <div>
             <h2>Input issues</h2>
             <div>
+                <input type="submit" class="btn" ng-click="downloadIssues()" value="Download issues"/>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
+            </div>
+            <div>
                 <table class="table table-stripped table-bordered table-condensed">
                     <thead class="thead">
                         <tr>
@@ -87,15 +92,17 @@
                         </tr>
                     </thead>
                     <tbody class="tbody">
-                        <tr name="issueIDForm" ng-class="{'form-group': true, 'has-warning': issueIDForm.issueIDInput.$valid === true}">
-                            <td class="col-md2"><input name="issueIDInput" class="form-control" type="text" ng-model="inputIssueID" required/></td>
-                            <td class="col-md10">
-                                <button type="button" class="btn btn-success btn-sm" ng-click="addIssue($index)">
-                                    <span class="glyphicon glyphicon-plus"></span>Add
-                                </button>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="issue in issues">
+                        <form ng-submit="addIssue()">
+                            <tr name="issueIDForm" ng-class="{'form-group': true, 'has-warning': issueIDForm.issueIDInput.$valid === true}">
+                                <td class="col-md2"><input name="issueIDInput" class="form-control" type="text" ng-model="inputIssueID" required/></td>
+                                <td class="col-md10">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <span class="glyphicon glyphicon-plus"></span>Add
+                                    </button>
+                                </td>
+                            </tr>
+                        </form>
+                        <tr ng-repeat="issue in issues.slice().reverse()">
                             <td class="col-md2">{{issue.id}}</td>
                             <td class="col-md10">
                                 <button type="button" class="btn btn-danger btn-sm" ng-click="removeIssue($index)">
@@ -106,11 +113,6 @@
                     </tbody>
                 </table>
             </div>
-            <div>
-                <input type="submit" class="btn" ng-click="printIssues()" value="Download issues"/>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
-            </div>
         </div>
         <hr/>
 
@@ -119,6 +121,7 @@
             <div class="issue-container" ng-repeat="issues in formattedIssues">
                 <div class="issue" ng-repeat="issue in issues">
                     <div class="issue-header">
+                        <img src="http://jira.cddelis.com:8080/secure/viewavatar?size=xsmall&avatarId=10311&avatarType=issuetype">
                         <span>{{issue.reference}}</span>
                         <span class="assignee">{{issue.assignee}}</span>
                     </div>

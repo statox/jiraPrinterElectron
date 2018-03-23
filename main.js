@@ -22,6 +22,7 @@ app.on('ready', function () {
 
 
     mainWindow = new BrowserWindow({width: 400, height: 800});
+    mainWindow.maximize();
 
     // and load the index.html of the app.
     mainWindow.loadURL('file://' + __dirname + '/index.html');

@@ -34,18 +34,11 @@
         };
 
         $scope.issues = [];
-        $scope.issues.push({id: "REP-951"});
-        $scope.issues.push({id: "REP-952"});
-        $scope.issues.push({id: "REP-953"});
-        $scope.issues.push({id: "REP-954"});
-        $scope.issues.push({id: "REP-955"});
-        $scope.issues.push({id: "REP-951"});
-        $scope.issues.push({id: "REP-952"});
-        $scope.issues.push({id: "REP-953"});
-        $scope.issues.push({id: "REP-954"});
-        $scope.issues.push({id: "REP-955"});
 
-        $scope.printIssues = function() {
+        $scope.downloadIssues = function() {
+            if ($scope.issues.length < 1) {
+                return;
+            }
             var promises = [];
             var downloadedIssues = [];
 
@@ -87,7 +80,8 @@
                     summary: issue.fields.summary,
                     assignee: issue.fields.assignee.name,
                     priority: issue.fields.priority.name,
-                    estimatedTime: issue.fields.timetracking.originalEstimate
+                    estimatedTime: issue.fields.timetracking.originalEstimate,
+                    icon: issue.fields.issuetype.iconUrl
                 }
 
                 formattedIssues.push(formattedIssue);
@@ -109,18 +103,6 @@
             html2canvas(doc).then(function (canvas) {
                 var data = canvas.toDataURL();
                 imageService.addImage(data);
-/*
- *                var docDefinition = {
- *                    content: [
- *                        {
- *                            image: data,
- *                            width: 500,
- *                        }
- *                    ]
- *                };
- *
- *                pdfMake.createPdf(docDefinition).download("issues.pdf");
- */
             });
         };
     }]);
