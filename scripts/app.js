@@ -69,7 +69,13 @@
         }
 
         $scope.addIssue = function() {
-            $scope.issues.push({id: $scope.inputIssueID});
+            var inputIssueID = $scope.inputIssueID;
+            if (typeof inputIssueID === "undefined" || inputIssueID.length === 0
+                || $scope.issues.map((i) => i.id).indexOf(inputIssueID) >= 0
+            ) {
+                return;
+            }
+            $scope.issues.push({id: inputIssueID});
         }
 
         var generatePdfDiv = function(issues) {

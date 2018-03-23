@@ -48,25 +48,25 @@
             <h2>Login information</h2>
             <form novalidate class="form-horizontal">
                 <div class="form-group">
-                    <label for="userName" class="col-sm-2 col-form-label">Username</label>
+                    <label for="userName" class="col-sm-2 control-label">Username</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-model="config.username" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <label for="password" class="col-sm-2 control-label">Password</label>
                     <div class="col-sm-10">
                         <input type="password" class="form-control" ng-model="config.password" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="host" class="col-sm-2 col-form-label">Host</label>
+                    <label for="host" class="col-sm-2 control-label">Host</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-model="config.host" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="port" class="col-sm-2 col-form-label">Port</label>
+                    <label for="port" class="col-sm-2 control-label">Port</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" ng-model="config.port" />
                     </div>
@@ -82,26 +82,34 @@
                 <table class="table table-stripped table-bordered table-condensed">
                     <thead class="thead">
                         <tr>
-                            <th>Issue ID</th>
-                            <th>Remove</th>
+                            <th class="col-md2">Issue ID</th>
+                            <th class="col-md10">Action</th>
                         </tr>
                     </thead>
                     <tbody class="tbody">
-                        <tr class="active">
-                            <td><input type="text" ng-model="inputIssueID"/></td>
-                            <td><button type="button" class="btn btn-success" ng-click="addIssue($index)">Add</button></td>
+                        <tr name="issueIDForm" ng-class="{'form-group': true, 'has-warning': issueIDForm.issueIDInput.$valid === true}">
+                            <td class="col-md2"><input name="issueIDInput" class="form-control" type="text" ng-model="inputIssueID" required/></td>
+                            <td class="col-md10">
+                                <button type="button" class="btn btn-success btn-sm" ng-click="addIssue($index)">
+                                    <span class="glyphicon glyphicon-plus"></span>Add
+                                </button>
+                            </td>
                         </tr>
                         <tr ng-repeat="issue in issues">
-                            <td>{{issue.id}}</td>
-                            <td><button type="button" class="btn btn-danger" ng-click="removeIssue($index)">Remove</button></td>
+                            <td class="col-md2">{{issue.id}}</td>
+                            <td class="col-md10">
+                                <button type="button" class="btn btn-danger btn-sm" ng-click="removeIssue($index)">
+                                    <span class="glyphicon glyphicon-minus"></span>Remove
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div>
-                <input type="submit" ng-click="printIssues()" value="Download issues"/>
+                <input type="submit" class="btn" ng-click="printIssues()" value="Download issues"/>
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <input type="submit" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
+                <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
             </div>
         </div>
         <hr/>
