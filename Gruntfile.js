@@ -9,7 +9,7 @@ module.exports = function (grunt) {
     const BUILD_DIR = 'build/';
     const DIST_DIR = 'dist/';
     const APP_NAME = 'APP Name';
-    const PLATFORM = 'all';
+    const PLATFORM = 'win32';
     const ARCH = 'all';
     const ELECTRON_VERSION = '1.2.3';
     const USE_ASAR = true;
@@ -53,7 +53,16 @@ module.exports = function (grunt) {
                             dest: BUILD_DIR
                         }
                     ]
-                }
+                },
+                angular_app: {
+                    files: [
+                        {
+                            expand: true,
+                            src: ['scripts/**/*'],
+                            dest: BUILD_DIR
+                        }
+                    ]
+                },
             },
             search: {
                 node_modules_dependencies: {
@@ -91,10 +100,11 @@ module.exports = function (grunt) {
         [
             'clean',
             'copy:electron_app',
-            'copy:angular_app_html',
+            //'copy:angular_app_html',
+            'copy:angular_app',
             'toggleComments',
             'search:node_modules_dependencies',
-            'uglify:production',
+            //'uglify:production',
             'package',
             'fix_default_app'
         ]
