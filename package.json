@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "electron": "^1.8.4",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-alpha.10",
     "jquery": "^1.9.1",
