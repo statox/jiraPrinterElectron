@@ -1,1 +1,112 @@
-<md-button class="md-raised">Button</md-button>
+<div class="page-container">
+    <div class="container">
+        <!-- Jumbotron -->
+        <div class="jumbotron">
+            <h1 class="text-center">Jira Printer</h1>
+            <div class="text-center">
+                <p>Print your Jira issues for your agile Scrum Board</p>
+                <hr/>
+                <p>Simply add the issues id you want to print and click 'Download issues'
+                then 'Print issues' to get the PDF file to print</p>
+            </div>
+        </div>
+        <btn ng-click="test()">coucou</btn>
+
+        <!-- Login info -->
+        <div>
+            <h2>Login information</h2>
+            <form novalidate class="form-horizontal">
+                <div class="form-group">
+                    <label for="userName" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="config.username" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" ng-model="config.password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="host" class="col-sm-2 control-label">Host</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="config.host" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="port" class="col-sm-2 control-label">Port</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="config.port" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <hr/>
+
+        <!-- Input issues -->
+        <div>
+            <h2>Input issues</h2>
+            <div>
+                <input type="submit" class="btn" ng-click="downloadIssues()" value="Download issues"/>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
+            </div>
+            <div>
+                <table class="table table-stripped table-bordered table-condensed">
+                    <thead class="thead">
+                        <tr>
+                            <th class="col-md2">Issue ID</th>
+                            <th class="col-md10">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <form ng-submit="addIssue()">
+                            <tr name="issueIDForm" ng-class="{'form-group': true, 'has-warning': issueIDForm.issueIDInput.$valid === true}">
+                                <td class="col-md2"><input name="issueIDInput" class="form-control" type="text" ng-model="inputIssueID" required/></td>
+                                <td class="col-md10">
+                                    <!--TODO: Find out why the form doesn't work anymore-->
+                                    <!--<button type="submit" class="btn btn-success btn-sm">-->
+                                    <button type="button" ng-click="addIssue()" class="btn btn-success btn-sm">
+                                        <span class="glyphicon glyphicon-plus"></span>Add
+                                    </button>
+                                </td>
+                            </tr>
+                        </form>
+                        <tr ng-repeat="issue in issues.slice().reverse()">
+                            <td class="col-md2">{{issue.id}}</td>
+                            <td class="col-md10">
+                                <button type="button" class="btn btn-danger btn-sm" ng-click="removeIssue($index)">
+                                    <span class="glyphicon glyphicon-minus"></span>Remove
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr/>
+
+        <!-- Printed issues -->
+        <div ng-if="showPDF" id="pdf">
+            <div class="issue-container" ng-repeat="issues in formattedIssues">
+                <div class="issue" ng-repeat="issue in issues">
+                    <div class="issue-header">
+                        <img src="http://jira.cddelis.com:8080/secure/viewavatar?size=xsmall&avatarId=10311&avatarType=issuetype">
+                        <span>{{issue.reference}}</span>
+                        <span class="assignee">{{issue.assignee}}</span>
+                    </div>
+                    <br/>
+                    <div class="issue-content">
+                        <span class="summary">{{issue.summary}}</span>
+                    </div>
+                    <br/>
+                    <div class="issue-footer">
+                        <span class="estimated-time">{{issue.estimatedTime}}</span>
+                    </div>
+                </div>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
