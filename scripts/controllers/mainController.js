@@ -25,6 +25,10 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
                 port: ""
             };
         }
+
+        // Focus on the jiraConfig form or the issue ID form
+        var elementToFocus = gotJiraConfig ? "input-issue-id" : "input-username";
+        document.getElementById(elementToFocus).focus();
     };
 
 
