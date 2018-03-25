@@ -21,6 +21,7 @@
     position: relative;
 }
 .issue-header {
+    font-size: 2rem;
 }
 .issue-content {
     text-align: center;
@@ -29,13 +30,15 @@
 }
 .issue-footer {
     position: absolute;
-    bottom: 0%
+    bottom: 0%;
+    font-size: 2rem;
 }
 .assignee {
     float: right;
 }
 .summary {
     font-weight: bold;
+    font-size: 2.4rem
 }
 .estimated-time {
     float: right;
