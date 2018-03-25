@@ -67,13 +67,13 @@
                     <table class="table table-stripped table-bordered table-condensed">
                         <thead class="thead">
                             <tr>
-                                <th class="col-md2">Issue ID</th>
-                                <th class="col-md10">Action</th>
+                                <th class="col-md-2">Issue ID</th>
+                                <th class="col-md-10">Action</th>
                             </tr>
                         </thead>
                         <tbody class="tbody">
                             <tr name="issueIDForm" class="form-group">
-                                <td class="col-md2">
+                                <td class="col-md-2">
                                     <input name="issueIDInput"
                                            class="form-control"
                                            type="text"
@@ -81,14 +81,14 @@
                                            id="input-issue-id"
                                            required/>
                                 </td>
-                                <td class="col-md10">
+                                <td class="col-md-10">
                                     <!-- Add the current issue ID to the list of issues -->
                                     <input type="submit" class="btn btn-success btn-sm" value="Add"/>
                                 </td>
                             </tr>
                             <tr ng-repeat="issue in issues.slice().reverse()">
-                                <td class="col-md2">{{issue.id}}</td>
-                                <td class="col-md10">
+                                <td class="col-md-2">{{issue.id}}</td>
+                                <td class="col-md-10">
                                     <button type="button" class="btn btn-danger btn-sm" ng-click="removeIssue($index)">
                                         <span class="glyphicon glyphicon-minus"></span>Remove
                                     </button>
