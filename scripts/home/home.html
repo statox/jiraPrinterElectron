@@ -60,36 +60,33 @@
                 <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
             </div>
             <div>
-                <table class="table table-stripped table-bordered table-condensed">
-                    <thead class="thead">
-                        <tr>
-                            <th class="col-md2">Issue ID</th>
-                            <th class="col-md10">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody">
-                        <form ng-submit="addIssue()">
-                            <tr name="issueIDForm" ng-class="{'form-group': true, 'has-warning': issueIDForm.issueIDInput.$valid === true}">
+                <form ng-submit="addIssue()">
+                    <table class="table table-stripped table-bordered table-condensed">
+                        <thead class="thead">
+                            <tr>
+                                <th class="col-md2">Issue ID</th>
+                                <th class="col-md10">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr name="issueIDForm" class="form-group">
                                 <td class="col-md2"><input name="issueIDInput" class="form-control" type="text" ng-model="inputIssueID" required/></td>
                                 <td class="col-md10">
-                                    <!--TODO: Find out why the form doesn't work anymore-->
-                                    <!--<button type="submit" class="btn btn-success btn-sm">-->
-                                    <button type="button" ng-click="addIssue()" class="btn btn-success btn-sm">
-                                        <span class="glyphicon glyphicon-plus"></span>Add
+                                    <!-- Add the current issue ID to the list of issues -->
+                                    <input type="submit" class="btn btn-success btn-sm" value="Add"/>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="issue in issues.slice().reverse()">
+                                <td class="col-md2">{{issue.id}}</td>
+                                <td class="col-md10">
+                                    <button type="button" class="btn btn-danger btn-sm" ng-click="removeIssue($index)">
+                                        <span class="glyphicon glyphicon-minus"></span>Remove
                                     </button>
                                 </td>
                             </tr>
-                        </form>
-                        <tr ng-repeat="issue in issues.slice().reverse()">
-                            <td class="col-md2">{{issue.id}}</td>
-                            <td class="col-md10">
-                                <button type="button" class="btn btn-danger btn-sm" ng-click="removeIssue($index)">
-                                    <span class="glyphicon glyphicon-minus"></span>Remove
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
         <hr/>
