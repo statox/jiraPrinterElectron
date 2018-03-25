@@ -1,3 +1,6 @@
+.top-row {
+    margin-bottom: 20px
+}
 .issue-container {
   border: 1px solclass #000;
   display:flex;
