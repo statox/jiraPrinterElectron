@@ -3,7 +3,7 @@
  *https://gist.github.com/Balkoth/d79a520ca2a3377c15e902ec68790aff
  */
 
-angular.module('app').service("imageService", function() {
+angular.module('app').service("imageService", function($q) {
     var imageService = {};
 
     //const PAGE_HEIGHT = 700;
@@ -62,6 +62,31 @@ angular.module('app').service("imageService", function() {
 
         content.push({ image, margin: [0, 5], width: PAGE_WIDTH });
         this.next();
+    }
+
+    imageService.generatePDF = function(issueContainers) {
+        var promisesCanvas = [];
+        var canvases = [];
+
+        issueContainers.forEach(function(issueContainer) {
+            var promise = $q.defer();
+            promisesCanvas.push(promise.promise);
+
+            html2canvas(issueContainer).then(function (canvas) {
+                canvases.push(canvas);
+                promise.resolve();
+            });
+        });
+
+        $q.all(promisesCanvas).then(function() {
+            var content = []
+
+            canvases.forEach(function(canvas) {
+                content.push({ image: canvas.toDataURL(), margin: [0, 5], width: PAGE_WIDTH });
+            })
+
+            pdfMake.createPdf({ content }).download();
+        });
     }
 
     return imageService;

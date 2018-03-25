@@ -98,12 +98,16 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
     };
 
     $scope.generatePDF = function() {
-        var doc = document.getElementById('pdf');
+        // Get all the elements "issue-container" to generate the PDF
+        var issueContainersElements = document.getElementsByClassName('issue-container');
+        var issueContainers = []
 
-        html2canvas(doc).then(function (canvas) {
-            var data = canvas.toDataURL();
-            imageService.addImage(data);
-        });
+        for (var i=0; i<issueContainersElements.length; i++) {
+            issueContainers.push(issueContainersElements[i]);
+        }
+
+        // Generate the PDF
+        imageService.generatePDF(issueContainers);
     };
 
     initializeData();
