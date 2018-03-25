@@ -1,19 +1,34 @@
 "use strict";
 
 app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', function($scope, $q, imageService, Issue) {
-    console.log("COUCOU FROM MainController");
-    $scope.showPDF = false;
+    var initializeData = function() {
+        // Do not display the printed issues before we got
+        // to download some
+        $scope.showPDF = false;
 
-    $scope.config = {
-        username: "TEST",
-        password: "TEST",
-        host: "",
-        port: ""
+        // This will contain the issues ID the user inputs
+        $scope.issues = [];
+
+        // This will contain the user data to connect to Jira
+
+        // Try to get the user data from local storage
+        $scope.jiraConfig = angular.fromJson(localStorage.getItem("jiraConfig"));
+
+        if (typeof $scope.jiraConfig === "undefined" || $scope.jiraConfig === null) {
+            $scope.jiraConfig = {
+                username: "",
+                password: "",
+                host: "",
+                port: ""
+            };
+        }
     };
 
-    $scope.issues = [];
 
     $scope.downloadIssues = function() {
+        // Record the current user jiraConfig
+        // TODO: make it smarter, record only when something changed
+        localStorage.setItem("jiraConfig", angular.toJson($scope.jiraConfig));
         if ($scope.issues.length < 1) {
             return;
         }
@@ -21,7 +36,7 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         var downloadedIssues = [];
 
         $scope.issues.forEach(function(issue) {
-            var promise = Issue.get(issue.id, $scope.config.host, $scope.config.port, $scope.config.username, $scope.config.password)
+            var promise = Issue.get(issue.id, $scope.jiraConfig.host, $scope.jiraConfig.port, $scope.jiraConfig.username, $scope.jiraConfig.password)
                 .then(function(response) {
                     downloadedIssues.push(response.data);
                 });
@@ -40,7 +55,6 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
     }
 
     $scope.addIssue = function() {
-        console.log("COUCOU from addIssue");
         var inputIssueID = $scope.inputIssueID;
         if (typeof inputIssueID === "undefined" || inputIssueID.length === 0
             || $scope.issues.map((i) => i.id).indexOf(inputIssueID) >= 0
@@ -84,5 +98,7 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
             imageService.addImage(data);
         });
     };
+
+    initializeData();
 }]);
 
