@@ -13,8 +13,11 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
 
         // Try to get the user data from local storage
         $scope.jiraConfig = angular.fromJson(localStorage.getItem("jiraConfig"));
+        var gotJiraConfig = !(typeof $scope.jiraConfig === "undefined" || $scope.jiraConfig === null)
 
-        if (typeof $scope.jiraConfig === "undefined" || $scope.jiraConfig === null) {
+        $scope.showJiraConfiguration = "";
+        if (!gotJiraConfig) {
+            $scope.showJiraConfiguration = "show";
             $scope.jiraConfig = {
                 username: "",
                 password: "",
