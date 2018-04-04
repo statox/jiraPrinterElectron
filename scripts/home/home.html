@@ -17,7 +17,7 @@
             <div class="top-row">
                 <!-- Button to toggle the login information form -->
                 <button class="btn" type="button" data-toggle="collapse" data-target="#jiraConfiguration" aria-expanded="false" aria-controls="jiraConfiguration">
-                    Toogle Jira configuration
+                    Toggle Jira configuration
                 </button>
             </div>
             <div class="collapse" ng-class="showJiraConfiguration" id="jiraConfiguration">
@@ -61,6 +61,7 @@
                 <input type="submit" class="btn" ng-click="downloadIssues()" value="Download issues"/>
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
+                <input type="submit" class="btn" ng-click="removeAllIssues()" value="Remove issues" ng-show="issues.length > 0"/>
             </div>
             <div>
                 <form ng-submit="addIssue()">
