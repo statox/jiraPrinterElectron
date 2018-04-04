@@ -57,6 +57,11 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         });
     }
 
+    $scope.removeAllIssues = function () {
+        $scope.issues = [];
+        $scope.inputIssueID = "";
+    }
+
     $scope.removeIssue = function(index) {
         $scope.issues.splice(index, 1);
     }
