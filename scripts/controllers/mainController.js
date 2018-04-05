@@ -60,6 +60,7 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
     $scope.removeAllIssues = function () {
         $scope.issues = [];
         $scope.inputIssueID = "";
+        $scope.formattedIssues = [];
     }
 
     $scope.removeIssue = function(index) {

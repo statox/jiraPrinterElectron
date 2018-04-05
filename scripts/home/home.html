@@ -61,7 +61,7 @@
                 <input type="submit" class="btn" ng-click="downloadIssues()" value="Download issues"/>
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
-                <input type="submit" class="btn" ng-click="removeAllIssues()" value="Remove issues" ng-show="issues.length > 0"/>
+                <input type="submit" class="btn btn-danger" ng-click="removeAllIssues()" value="Remove issues" ng-show="issues.length > 0"/>
             </div>
             <div>
                 <form ng-submit="addIssue()">
