@@ -45,7 +45,11 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         $scope.issues.forEach(function(issue) {
             var promise = Issue.get(issue.id, $scope.jiraConfig.host, $scope.jiraConfig.port, $scope.jiraConfig.username, $scope.jiraConfig.password)
                 .then(function(response) {
+                    issue.downloadSuccess = true;
                     downloadedIssues.push(response.data);
+                })
+                .catch(function(err) {
+                    issue.downloadSuccess = false;
                 });
 
             promises.push(promise);
@@ -74,7 +78,7 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         ) {
             return;
         }
-        $scope.issues.push({id: inputIssueID});
+        $scope.issues.push({id: inputIssueID, downloadSuccess: undefined});
     }
 
     var generatePdfDiv = function(issues) {

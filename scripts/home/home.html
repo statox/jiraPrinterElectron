@@ -88,7 +88,13 @@
                                 </td>
                             </tr>
                             <tr ng-repeat="issue in issues.slice().reverse()">
-                                <td class="col-md-2">{{issue.id}}</td>
+                                <td class="col-md-2">
+                                    <span ng-show="issue.downloadSuccess !== undefined">
+                                        <img ng-if="issue.downloadSuccess" src="scripts/assets/glyphicons-207-ok.png">
+                                        <img ng-if="!issue.downloadSuccess" src="scripts/assets/glyphicons-208-remove.png">
+                                    </span>
+                                    <span>{{issue.id}}</span>
+                                </td>
                                 <td class="col-md-10">
                                     <button type="button" class="btn btn-danger btn-sm" ng-click="removeIssue($index)">
                                         <span class="glyphicon glyphicon-minus"></span>Remove
