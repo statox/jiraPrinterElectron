@@ -90,7 +90,7 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
                                 message = "Service Unavailable. Jira is currently unavailable.";
                                 break;
                             default:
-                                message = "Error";
+                                message = "Houston we have a problem. We got an unexpected error code.";
                         }
 
                         $scope.jiraError = true;
