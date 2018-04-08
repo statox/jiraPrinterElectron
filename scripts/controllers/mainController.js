@@ -62,16 +62,32 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
                     downloadedIssues.push(response.data);
                 })
                 .catch(function(err) {
+                    // If we can't download an issue update its downloadSuccess property
+                    // and add an entry in $scope.jiraLog which will be displayed to the user
                     issue.downloadSuccess = false;
 
                     if (Object.keys($scope.jiraLog).indexOf(err.status) == -1) {
                         var message = "";
                         switch (err.status) {
+                            case 400:
+                            case 405:
+                                message = "Bad Request. The application sent a bad request please contact the maintainer.";
+                                break;
+                            case 401:
                             case 403:
-                                message = "Unauthorized. Please check your credentials in 'login informations'";
+                                message = "Unauthorized. Please check your credentials in 'login informations'.";
                                 break;
                             case 404:
-                                message = "Not found. Check the issue actually exists";
+                                message = "Not found. Check the issue actually exists.";
+                                break;
+                            case 429:
+                                message = "Too many request. You have exceeded the limit rate.";
+                                break;
+                            case 500:
+                                message = "Internal server error. Please contact your Jira administrator.";
+                                break;
+                            case 503:
+                                message = "Service Unavailable. Jira is currently unavailable.";
                                 break;
                             default:
                                 message = "Error";
