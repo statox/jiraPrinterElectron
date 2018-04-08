@@ -41,7 +41,7 @@ Note that the OAuth protocol is not supported yet. All requests are authenticate
 via Basic Auth HTTP headers. Thus it is recommended to use HTTPS in the host
 information.
 
-You can then input the Jira IDs of the issues you want to print. Once you input
+You can then input the Jira keys of the issues you want to print. Once you input
 all the issues you want to print you can use the "Download issues" and "Print
 issues" buttons.
 
