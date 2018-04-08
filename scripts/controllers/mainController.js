@@ -81,12 +81,17 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         $scope.formattedIssues = [];
         issues.forEach(function(issue) {
             var formattedIssue = {
-                reference: issue.key,
+                reference: issue.key, 
                 summary: issue.fields.summary,
                 assignee: issue.fields.assignee.name,
                 priority: issue.fields.priority.name,
                 estimatedTime: issue.fields.timetracking.originalEstimate,
-                icon: issue.fields.issuetype.iconUrl
+                icon: issue.fields.issuetype.iconUrl,
+                priority: issue.fields.priority,
+                avatar: issue.fields.assignee.avatarUrls["48x48"]
+            }
+            if(issue.fields.fixVersions.length > 0) {
+                formattedIssue.version = issue.fields.fixVersions[0].name;
             }
 
             formattedIssues.push(formattedIssue);

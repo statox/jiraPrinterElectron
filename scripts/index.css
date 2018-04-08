@@ -13,33 +13,133 @@
   border: 1px solclass #000;
   margin:2px;
 }
+
 .issue {
-    width: 50%;
-    border-left: 10px solid blue;
-    border-right: 20px solid white;
-    border-bottom: 20px solid white;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    float: left;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    height: 233px;
+    padding: 20px;
+    width: 335px;
+}
+
+.issue-content {
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
     position: relative;
 }
+
 .issue-header {
-    font-size: 2rem;
+    height: 25px;
+    display: flex;
+    line-height:0px;
 }
-.issue-content {
-    text-align: center;
-    position: absolute;
-    top: 20%
-}
-.issue-footer {
-    position: absolute;
-    bottom: 0%;
-    font-size: 2rem;
-}
-.assignee {
-    float: right;
-}
-.summary {
+
+.issue-summary {
     font-weight: bold;
-    font-size: 2.4rem
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+    font-size: 16px;
+    line-height: 1.3em;
+    max-height: 90px;
 }
-.estimated-time {
-    float: right;
+
+.issue-footer {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 25px;
+}
+
+.issue-icon {
+    display: inline-block;
+    margin-left: 5px;
+    overflow: hidden;
+    vertical-align: middle;
+    height: 16px;
+    width: 16px;
+}
+
+.issue-icon:first-child {
+    margin-left: 0px;
+}
+
+.issue-key {
+    color: #707070;
+    line-height: 1em;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.row-end {
+    position: absolute;
+    top: 0;
+    right:0;
+}
+
+.label {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 3.01px;
+    display: inline-block;
+    font-weight: normal;
+    margin: 0 5px 0 0;
+    text-align: left;
+    text-decoration: none;
+
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    float: left;
+    line-height: 1.5em;
+    overflow: hidden;
+    padding: 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 12px;
+    margin-top: 3.5px;
+    max-width: 293px;
+    color: #707070;
+}
+
+.gravatar-img {
+    border-radius: 25px;
+    height: 25px;
+    line-height: 25px;
+    width: 25px;
+}
+
+.issue-color {
+    height: 100%;
+    left:1px;
+    position: absolute;
+    top:0;
+    border-left: 5px solid;
+}
+.issue-color.Basse {
+    border-color: #2ecc71;
+}
+.issue-color.Moyenne {
+    border-color: #e67e22;
+}
+.issue-color.Haute {
+    border-color: #e74c3c;
+}
+
+.issue-color.Urgente {
+    border-color: #c0392b;
+}
+
+.issue-time {
+    font-weight: normal;
+    font-size: 12px;
 }

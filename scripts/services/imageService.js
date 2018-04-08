@@ -72,7 +72,9 @@ angular.module('app').service("imageService", function($q) {
             var promise = $q.defer();
             promisesCanvas.push(promise.promise);
 
-            html2canvas(issueContainer).then(function (canvas) {
+            html2canvas(issueContainer, {
+                allowTaint: true,
+            }).then(function (canvas) {
                 canvases.push(canvas);
                 promise.resolve();
             });
