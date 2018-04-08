@@ -9,6 +9,12 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         // This will contain the issues ID the user inputs
         $scope.issues = [];
 
+        // This will contain the error logs if we can't reach Jira
+        $scope.jiraLog = {};
+
+        // This will tell us if we have error logs to show
+        $scope.jiraError = false;
+
         // This will contain the user data to connect to Jira
 
         // Try to get the user data from local storage
@@ -39,6 +45,13 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         if ($scope.issues.length < 1) {
             return;
         }
+
+        // Reset the error and the issues status
+        $scope.jiraError = false;
+        $scope.jiraLog = {};
+        $scope.issues.forEach((i) => { i.downloadSuccess = undefined; });
+
+
         var promises = [];
         var downloadedIssues = [];
 
@@ -50,6 +63,23 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
                 })
                 .catch(function(err) {
                     issue.downloadSuccess = false;
+
+                    if (Object.keys($scope.jiraLog).indexOf(err.status) == -1) {
+                        var message = "";
+                        switch (err.status) {
+                            case 403:
+                                message = "Unauthorized. Please check your credentials in 'login informations'";
+                                break;
+                            case 404:
+                                message = "Not found. Check the issue actually exists";
+                                break;
+                            default:
+                                message = "Error";
+                        }
+
+                        $scope.jiraError = true;
+                        $scope.jiraLog[err.status] = message;
+                    }
                 });
 
             promises.push(promise);

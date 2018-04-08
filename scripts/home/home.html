@@ -83,6 +83,12 @@
                                            id="input-issue-id"
                                            placeholder="PROJ-1"
                                            required/>
+                                    <br ng-if="jiraError"/>
+                                    <div ng-if="jiraError" class="alert alert-danger">
+                                        <div ng-repeat="(status, message) in jiraLog">
+                                            <strong>{{status}} </strong>{{message}}
+                                        </div>
+                                    </div>
                                 </td>
                                 <td class="col-md-10">
                                     <!-- Add the current issue ID to the list of issues -->
