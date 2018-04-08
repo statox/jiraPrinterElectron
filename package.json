@@ -1,27 +1,27 @@
 {
-  "name": "electron-angular-material",
-  "version": "1.0.0",
-  "description": "An Electron + AngularJS + Angular Material boilerplate",
+  "name": "jiraPrinter",
+  "version": "0.0.1",
+  "description": "An app to print Jira issues in PDF files built with Electron and AngularJS",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thomas-barthelemy/electron-angular-boilerplate.git"
+    "url": "git+https://github.com/statox/jiraPrinterElectron.git"
   },
   "keywords": [
+    "Jira",
+    "Issue tracker",
     "Electron",
-    "AngularJS",
-    "Angular Material",
-    "Boilerplate"
+    "AngularJS"
   ],
-  "author": "Thomas Barthelemy",
+  "author": "statox",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/thomas-barthelemy/electron-angular-boilerplate/issues"
+    "url": "https://github.com/statox/jiraPrinterElectron/issues"
   },
-  "homepage": "https://github.com/thomas-barthelemy/electron-angular-boilerplate",
+  "homepage": "https://github.com/statox/jiraPrinterElectron",
   "devDependencies": {
     "angular": "^1.5.7",
     "angular-animate": "^1.5.7",

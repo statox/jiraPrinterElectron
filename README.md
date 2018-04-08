@@ -69,6 +69,7 @@ The app is a work in progress here is some things which may be done in the
 future
 
 * Write proper tests
+* Don't save password in plain text (maybe use [keytar](https://github.com/atom/node-keytar))
 * Handle https protocol
 * Custom CSS to customize the printed issues format
 * Support OAuth protocol to reach Jira
