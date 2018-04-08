@@ -97,8 +97,8 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         $scope.formattedIssues = [];
     }
 
-    $scope.removeIssue = function(index) {
-        $scope.issues.splice(index, 1);
+    $scope.removeIssue = function(issueID) {
+        $scope.issues = $scope.issues.filter((i) => {return i.id !== issueID;});
     }
 
     $scope.addIssue = function() {
