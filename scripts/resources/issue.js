@@ -3,7 +3,7 @@ angular.module('app').factory("Issue", function($http) {
         get: function(issueID, host, port, username, password) {
             return $http({
                 method: 'GET',
-                url: 'http://' + host + ":" + port + '/rest/api/latest/issue/' + issueID,
+                url: host + ":" + port + '/rest/api/latest/issue/' + issueID,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Basic ' + btoa(username + ':' + password),

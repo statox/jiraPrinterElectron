@@ -38,8 +38,7 @@ The first time you start the application you will have to setup the login
 information to be able to make request to your Jira instance API.
 
 Note that the OAuth protocol is not supported yet. All requests are authenticated
-via Basic Auth HTTP headers. Thus it is recommended to use HTTPS in the host
-information.
+via Basic Auth HTTP headers. Support of https and OAuth are in the roadmap.
 
 You can then input the Jira keys of the issues you want to print. Once you input
 all the issues you want to print you can use the "Download issues" and "Print
@@ -70,6 +69,7 @@ The app is a work in progress here is some things which may be done in the
 future
 
 * Write proper tests
+* Handle https protocol
 * Custom CSS to customize the printed issues format
 * Support OAuth protocol to reach Jira
 
