@@ -1,3 +1,77 @@
 # JiraPrinter
 
 Print your Jira issues for your Agile Scrum board!
+
+This applications gets a list of issues from a [Jira](https://www.atlassian.com/software/jira) issue tracker and prints them in a formatted PDF file. This way you can then print your issues and use them on your real life Agile Scrum board.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your
+local machine for development and testing purposes. See deployment for notes on
+how to deploy the project on a live system.
+
+### Prerequisites
+
+This is an [electron](https://electronjs.org/) app so all you need is to have
+npm install on your machine.
+
+### Installing
+
+To get started clone this repo on your machine. Then install the dependencies
+with
+
+    npm install
+
+You can then start the application with
+
+    npm start
+
+End with an example of getting some data out of the system or using it for a
+little demo
+
+## Running the application
+
+The first time you start the application you will have to setup the login
+information to be able to make request to your Jira instance API.
+
+Note that Oauth is not supported yet. All requests are authenticated via Basic
+Auth HTTP headers. Thus it is recommended to use HTTPS in the host information.
+
+You can then input the Jira IDs of the issues you want to print. Once you input
+all the issues you want to print you can use the "Download issues" and "Print
+issues" buttons.
+
+## Deployment
+
+You can generate an application with
+
+    grunt build
+
+The build parameters are in  ̀[Gruntfile.js](Gruntfile.js) there you can define for which
+platform you want to build your application.
+
+## Built With
+
+* [GruntJS](https://gruntjs.com/) - To run tasks as building the application
+* [AngularJS](https://angularjs.org/)- As the MVC framework
+* [Bootstrap](https://getbootstrap.com/) - As the front end library
+* [html2canvas](https://html2canvas.hertzen.com/) - A javascript library to take
+  screenshots
+* [pdfmake](http://pdfmake.org/#/) - To create a PDF in pure JavaScript
+
+## TODO
+
+The app is a work in progress here is some things which may be done in the
+future
+
+* Write proper tests
+* Custom CSS from user to have customize the printed issues
+* Support OAuth protocol to reach Jira
+
+## Contributing
+
+Please fork and submit a Pull Request!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
