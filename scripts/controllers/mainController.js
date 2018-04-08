@@ -47,7 +47,10 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'storageServic
         // Reset the error and the issues status
         $scope.jiraError = false;
         $scope.jiraLog = {};
-        $scope.issues.forEach((i) => { i.downloadSuccess = undefined; });
+        $scope.issues.forEach((i) => {
+            i.downloading = true;
+            i.downloadSuccess = undefined;
+        });
 
 
         var promises = [];
@@ -94,6 +97,10 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'storageServic
                         $scope.jiraError = true;
                         $scope.jiraLog[err.status] = message;
                     }
+                })
+                .finally(function() {
+                    // Reset the downloading state
+                    issue.downloading = false;
                 });
 
             promises.push(promise);
@@ -122,7 +129,7 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'storageServic
         ) {
             return;
         }
-        $scope.issues.push({id: inputIssueID, downloadSuccess: undefined});
+        $scope.issues.push({id: inputIssueID, downloadSuccess: undefined, downloading: undefined});
     }
 
     var generatePdfDiv = function(issues) {
