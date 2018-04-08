@@ -1,6 +1,8 @@
 /*
- *The functions of this file are copied and/or adapted from this gist
- *https://gist.github.com/Balkoth/d79a520ca2a3377c15e902ec68790aff
+ * Service to handle images and convert them into PDF
+ *
+ * The functions of this file are copied and/or adapted from this gist
+ * https://gist.github.com/Balkoth/d79a520ca2a3377c15e902ec68790aff
  */
 
 angular.module('app').service("imageService", function($q) {

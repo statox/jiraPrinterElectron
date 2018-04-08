@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', function($scope, $q, imageService, Issue) {
+app.controller('MainController', ['$scope', '$q', 'imageService', 'storageService', 'Issue', function($scope, $q, imageService, storageService, Issue) {
     var initializeData = function() {
         // Do not display the printed issues before we got
         // to download some
@@ -15,33 +15,31 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'Issue', funct
         // This will tell us if we have error logs to show
         $scope.jiraError = false;
 
-        // This will contain the user data to connect to Jira
-
-        // Try to get the user data from local storage
-        $scope.jiraConfig = angular.fromJson(localStorage.getItem("jiraConfig"));
-        var gotJiraConfig = !(typeof $scope.jiraConfig === "undefined" || $scope.jiraConfig === null)
-
-        $scope.showJiraConfiguration = "";
-        if (!gotJiraConfig) {
-            $scope.showJiraConfiguration = "show";
-            $scope.jiraConfig = {
-                username: "",
-                password: "",
-                host: "",
-                port: ""
-            };
-        }
+        // Try to get the user data to connect to Jira from local storage
+        var result = storageService.getJiraConfig();
+        var gotJiraConfig = result.success;
+        $scope.jiraConfig = result.data;
 
         // Focus on the jiraConfig form or the issue ID form
-        var elementToFocus = gotJiraConfig ? "input-issue-id" : "input-username";
-        document.getElementById(elementToFocus).focus();
+        var elementToFocus;
+        if (gotJiraConfig) {
+            $scope.showJiraConfiguration = "";
+            elementToFocus = "input-issue-id";
+        } else {
+            $scope.showJiraConfiguration = "show";
+            elementToFocus = "input-username";
+        }
+
+        // We need to wait for the Login Configuration to be uncollapsed to focus on it
+        setTimeout(function(){ document.getElementById(elementToFocus).focus(); }, 10);
     };
 
 
     $scope.downloadIssues = function() {
-        // Record the current user jiraConfig
-        // TODO: make it smarter, record only when something changed
-        localStorage.setItem("jiraConfig", angular.toJson($scope.jiraConfig));
+        // Record the current user jiraConfig if it has changed
+        storageService.setJiraConfig($scope.jiraConfig);
+
+        // Don't start the download if the user didn't provide at least one issue
         if ($scope.issues.length < 1) {
             return;
         }
