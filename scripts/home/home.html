@@ -13,10 +13,10 @@
 
         <!-- Login info -->
         <div>
-            <h2>Login information</h2>
-            <div class="top-row">
+            <div class="top-row clearfix">
+                <h2 class="pull-left">Login information</h2>
                 <!-- Button to toggle the login information form -->
-                <button class="btn" type="button" data-toggle="collapse" data-target="#jiraConfiguration" aria-expanded="false" aria-controls="jiraConfiguration">
+                <button class="btn pull-right" type="button" data-toggle="collapse" data-target="#jiraConfiguration" aria-expanded="false" aria-controls="jiraConfiguration">
                     Toggle Jira configuration
                 </button>
             </div>
@@ -57,12 +57,13 @@
 
         <!-- Input issues -->
         <div>
-            <h2>Input issues</h2>
-            <div class="top-row">
-                <input type="submit" class="btn" ng-click="downloadIssues()" value="Download issues"/>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
-                <input type="submit" class="btn btn-danger" ng-click="removeAllIssues()" value="Remove issues" ng-show="issues.length > 0"/>
+            <div class="top-row clearfix">
+                <h2 class="pull-left">Input issues</h2>
+                <div class="pull-right">
+                    <input type="submit" class="btn" ng-click="downloadIssues()" value="Download issues"/>
+                    <input type="submit" class="btn" ng-click="generatePDF()" value="Print issues" ng-if="showPDF"/>
+                    <input type="submit" class="btn btn-danger" ng-click="removeAllIssues()" value="Remove issues" ng-show="issues.length > 0"/>
+                </div>
             </div>
             <div>
                 <form ng-submit="addIssue()">
