@@ -116,6 +116,8 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'storageServic
         $scope.issues = [];
         $scope.inputIssueID = "";
         $scope.formattedIssues = [];
+        $scope.jiraLog = {};
+        $scope.jiraError = false;
     }
 
     $scope.removeIssue = function(issueID) {
