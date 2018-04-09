@@ -128,19 +128,33 @@
         <div ng-if="showPDF" id="pdf">
             <div class="issue-container" ng-repeat="issues in formattedIssues">
                 <div class="issue" ng-repeat="issue in issues">
-                    <div class="issue-header">
-                        <img src="http://jira.cddelis.com:8080/secure/viewavatar?size=xsmall&avatarId=10311&avatarType=issuetype">
-                        <span>{{issue.reference}}</span>
-                        <span class="assignee">{{issue.assignee}}</span>
-                    </div>
-                    <br/>
                     <div class="issue-content">
-                        <span class="summary">{{issue.summary}}</span>
+                        <div class="issue-header">
+                            <div class="issue-icon">
+                                <img ng-src="{{issue.icon}}">
+                            </div>
+                            <div class="issue-icon">
+                                <img ng-src="{{issue.priority.iconUrl}}">
+                            </div>
+                            <div class="issue-key">{{ issue.reference }}</div>
+                            <div class="row-end">
+                                <img class="gravatar-img" ng-src="{{issue.avatar}}">
+                            </div>
+                        </div>
+                        <div class="issue-summary">
+                            {{issue.summary}}
+                            <br>
+                            <div class="issue-time" ng-show="issue.estimatedTime">
+                                Temps estimé : {{ issue.estimatedTime }}
+                            </div>
+                        </div>
+                        <div class="issue-footer">
+                            <div class="label" ng-show="issue.version">
+                                {{ issue.version }}
+                            </div>
+                        </div>
                     </div>
-                    <br/>
-                    <div class="issue-footer">
-                        <span class="estimated-time">{{issue.estimatedTime}}</span>
-                    </div>
+                    <div class="issue-color" ng-class="issue.priority.name"></div>
                 </div>
                 <br/>
             </div>
