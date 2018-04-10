@@ -37,9 +37,11 @@
     "grunt-search": "^0.1.8"
   },
   "dependencies": {
+    "angular-electron": "^0.2.1",
     "bootstrap": "^4.0.0",
     "electron": "^1.8.4",
     "font-awesome": "^4.7.0",
+    "html-pdf": "^2.2.0",
     "html2canvas": "^1.0.0-alpha.10",
     "jquery": "^3.0.0",
     "pdfmake": "^0.1.36",
