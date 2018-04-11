@@ -179,7 +179,9 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'storageServic
         content += html;
 
         // Options for the PDF generation
-        var options = { format: 'Letter' };
+        var options = {
+            format: 'A4',
+        };
 
         // Generate the PDF
         // TODO: let the user choose where to write the PDF on the filesystem
