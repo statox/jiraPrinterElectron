@@ -115,6 +115,7 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
     }
 
     $scope.removeAllIssues = function () {
+        $scope.showPDF = false;
         $scope.issues = [];
         $scope.inputIssueID = "";
         $scope.formattedIssues = [];
