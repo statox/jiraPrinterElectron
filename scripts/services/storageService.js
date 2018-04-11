@@ -47,5 +47,25 @@ angular.module('app').service("storageService", function() {
         }
     };
 
+    /*
+     * Try to get the previously input issues from local storage
+     * Return an empty list if nothing is found
+     */
+    storageService.getIssues = function() {
+        var issues = angular.fromJson(localStorage.getItem("issues"));
+        if (issues == null) {
+            issues = [];
+        }
+        return issues;
+    }
+
+    /*
+     * Save the current input issues in local storage
+     */
+    storageService.setIssues = function (issues) {
+        var issuesJson = angular.toJson(issues)
+        localStorage.setItem("issues", issuesJson);
+    }
+
     return storageService;
 });

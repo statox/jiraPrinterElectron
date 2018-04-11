@@ -8,7 +8,8 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
         $scope.showPDF = false;
 
         // This will contain the issues ID the user inputs
-        $scope.issues = [];
+        // Get them from local storage
+        $scope.issues = storageService.getIssues();
 
         // This will contain the error logs if we can't reach Jira
         $scope.jiraLog = {};
@@ -119,10 +120,16 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
         $scope.formattedIssues = [];
         $scope.jiraLog = {};
         $scope.jiraError = false;
+
+        // Store the new state of $scope.issues in locale storage
+        storageService.setIssues($scope.issues);
     }
 
     $scope.removeIssue = function(issueID) {
         $scope.issues = $scope.issues.filter((i) => {return i.id !== issueID;});
+
+        // Store the new state of $scope.issues in locale storage
+        storageService.setIssues($scope.issues);
     }
 
     $scope.addIssue = function() {
@@ -133,6 +140,9 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
             return;
         }
         $scope.issues.push({id: inputIssueID, downloadSuccess: undefined, downloading: undefined});
+
+        // Store the new state of $scope.issues in locale storage
+        storageService.setIssues($scope.issues);
     }
 
     var generatePdfDiv = function(issues) {
