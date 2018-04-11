@@ -5,7 +5,8 @@ var app = angular.module(
     [
         'ngRoute',
         'ngMaterial',
-        'ngAnimate'
+        'ngAnimate',
+        'angular-electron'
     ]
 );
 app.config(
@@ -22,3 +23,13 @@ app.config(
         }
     ]
 );
+
+// Make html-pdf an angular module
+app.config(['remoteProvider', function(remoteProvider) {
+  remoteProvider.register('html-pdf');
+}]);
+
+// Make fs an angular module
+app.config(['remoteProvider', function(remoteProvider) {
+  remoteProvider.register('fs');
+}]);

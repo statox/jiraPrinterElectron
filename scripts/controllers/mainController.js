@@ -1,6 +1,7 @@
 "use strict";
 
-app.controller('MainController', ['$scope', '$q', 'imageService', 'storageService', 'Issue', function($scope, $q, imageService, storageService, Issue) {
+app.controller('MainController', ['$scope', '$q', 'imageService', 'storageService', 'Issue', 'html-pdf', 'fs', function($scope, $q, imageService, storageService, Issue, pdf, fs) {
+
     var initializeData = function() {
         // Do not display the printed issues before we got
         // to download some
@@ -166,16 +167,28 @@ app.controller('MainController', ['$scope', '$q', 'imageService', 'storageServic
     };
 
     $scope.generatePDF = function() {
-        // Get all the elements "issue-container" to generate the PDF
-        var issueContainersElements = document.getElementsByClassName('issue-container');
-        var issueContainers = []
+        // Get the HTML containing the issues
+        var issueContainerElement = document.getElementById('pdf');
+        var html = issueContainerElement.innerHTML;
 
-        for (var i=0; i<issueContainersElements.length; i++) {
-            issueContainers.push(issueContainersElements[i]);
-        }
+        // Get our css stylesheet
+        var css = fs.readFileSync('scripts/index.css', 'utf8');
+
+        // Put together the style and the issues
+        var content = "<style>" + css + "</style>";
+        content += html;
+
+        // Options for the PDF generation
+        var options = {
+            format: 'A4',
+        };
 
         // Generate the PDF
-        imageService.generatePDF(issueContainers);
+        // TODO: let the user choose where to write the PDF on the filesystem
+        pdf.create(content, options).toFile('./issues.pdf', function(err, res) {
+            if (err) return console.log(err);
+            console.log(res); // { filename: '/app/businesscard.pdf' }
+        });
     };
 
     initializeData();
