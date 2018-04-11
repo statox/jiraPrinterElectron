@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('MainController', ['$scope', '$q', 'imageService', 'storageService', 'Issue', 'html-pdf', 'fs', function($scope, $q, imageService, storageService, Issue, pdf, fs) {
+app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'html-pdf', 'fs', function($scope, $q, storageService, Issue, pdf, fs) {
 
     var initializeData = function() {
         // Do not display the printed issues before we got
