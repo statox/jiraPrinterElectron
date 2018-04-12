@@ -154,7 +154,6 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
                 reference: issue.key, 
                 summary: issue.fields.summary,
                 assignee: issue.fields.assignee.name,
-                priority: issue.fields.priority.name,
                 estimatedTime: issue.fields.timetracking.originalEstimate,
                 icon: issue.fields.issuetype.iconUrl,
                 priority: issue.fields.priority,
