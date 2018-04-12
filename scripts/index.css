@@ -44,7 +44,7 @@
 .issue-header {
     height: 25px;
     display: flex;
-    line-height: 0px;
+    line-height: 0;
 }
 
 .issue-summary {
@@ -76,7 +76,7 @@
 }
 
 .issue-icon:first-child {
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .issue-key {
@@ -94,7 +94,6 @@
 
 .label {
     background: #f5f5f5;
-    border: 1px solid #ccc;
     border-radius: 3.01px;
     display: inline-block;
     font-weight: normal;
