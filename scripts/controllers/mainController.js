@@ -115,6 +115,7 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
     }
 
     $scope.removeAllIssues = function () {
+        $scope.showPDF = false;
         $scope.issues = [];
         $scope.inputIssueID = "";
         $scope.formattedIssues = [];
@@ -191,6 +192,9 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
         // Options for the PDF generation
         var options = {
             format: 'A4',
+            border: {
+                top: '15mm'
+            }
         };
 
         // Generate the PDF

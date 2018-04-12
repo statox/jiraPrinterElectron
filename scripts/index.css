@@ -1,17 +1,23 @@
+.page-container {
+    background-color: white;
+}
+
 .top-row {
     margin-bottom: 20px
 }
+
 .issue-container {
-  border: 1px solclass #000;
-  display:flex;
-  justify-content: center;
-  padding: 3px;
-  height: 300px;
-  font-size: 24
+    border: 1px solclass #000;
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    height: 240px;
+    font-size: 24px;
 }
-.issue-container > div {
-  border: 1px solclass #000;
-  margin:2px;
+
+.issue-container>div {
+    border: 1px solclass #000;
+    margin: 2px;
 }
 
 .issue {
@@ -25,6 +31,7 @@
     height: 233px;
     padding: 20px;
     width: 335px;
+    page-break-inside: avoid;
 }
 
 .issue-content {
@@ -37,7 +44,7 @@
 .issue-header {
     height: 25px;
     display: flex;
-    line-height:0px;
+    line-height: 0;
 }
 
 .issue-summary {
@@ -69,7 +76,7 @@
 }
 
 .issue-icon:first-child {
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .issue-key {
@@ -82,19 +89,17 @@
 .row-end {
     position: absolute;
     top: 0;
-    right:0;
+    right: 0;
 }
 
 .label {
     background: #f5f5f5;
-    border: 1px solid #ccc;
     border-radius: 3.01px;
     display: inline-block;
     font-weight: normal;
     margin: 0 5px 0 0;
     text-align: left;
     text-decoration: none;
-
     background-color: #fff;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -104,7 +109,6 @@
     padding: 0 5px;
     text-overflow: ellipsis;
     white-space: nowrap;
-
     font-size: 12px;
     margin-top: 3.5px;
     max-width: 293px;
@@ -120,17 +124,20 @@
 
 .issue-color {
     height: 100%;
-    left:1px;
+    left: 1px;
     position: absolute;
-    top:0;
-    border-left: 5px solid;
+    top: 0;
+    border-left: 5px solid #fff;
 }
+
 .issue-color.Basse {
     border-color: #2ecc71;
 }
+
 .issue-color.Moyenne {
     border-color: #e67e22;
 }
+
 .issue-color.Haute {
     border-color: #e74c3c;
 }
