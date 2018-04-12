@@ -78,6 +78,13 @@ future
 
 Please fork and submit a Pull Request!
 
+## Code quality
+
+We have a CodeFactor watching this repo [here](https://www.codefactor.io/repository/github/statox/jiraprinterelectron/)
+
+We also have Travis which should be usefull when we write tests in the future
+[here](https://travis-ci.org/statox/jiraPrinterElectron)
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
