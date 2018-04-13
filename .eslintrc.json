@@ -11,7 +11,7 @@
     "globals": {
         "angular": true,
         "app": true,
-        "round": true
+        "err": true
     },
     // the recommended settings are pretty sane, use them and extends
     // them with our own config (see rules)
