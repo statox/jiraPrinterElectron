@@ -11,7 +11,7 @@ angular.module('app').service("storageService", function() {
      */
     storageService.getJiraConfig = function() {
         var jiraConfig = angular.fromJson(localStorage.getItem("jiraConfig"));
-        var gotJiraConfig = !(typeof jiraConfig === "undefined" || jiraConfig === null)
+        var gotJiraConfig = !(typeof jiraConfig === "undefined" || jiraConfig === null);
 
         if (!gotJiraConfig) {
             jiraConfig = {
@@ -32,7 +32,7 @@ angular.module('app').service("storageService", function() {
      */
     storageService.setJiraConfig = function(jiraConfigFromInput) {
         var jiraConfigFromStorage = angular.fromJson(localStorage.getItem("jiraConfig"));
-        var gotJiraConfig = !(typeof jiraConfigFromStorage === "undefined" || jiraConfigFromStorage === null)
+        var gotJiraConfig = !(typeof jiraConfigFromStorage === "undefined" || jiraConfigFromStorage === null);
         var configHasChanged = false;
 
         if (gotJiraConfig) {
@@ -57,15 +57,15 @@ angular.module('app').service("storageService", function() {
             issues = [];
         }
         return issues;
-    }
+    };
 
     /*
      * Save the current input issues in local storage
      */
     storageService.setIssues = function (issues) {
-        var issuesJson = angular.toJson(issues)
+        var issuesJson = angular.toJson(issues);
         localStorage.setItem("issues", issuesJson);
-    }
+    };
 
     return storageService;
 });

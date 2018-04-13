@@ -26,10 +26,10 @@ app.config(
 
 // Make html-pdf an angular module
 app.config(['remoteProvider', function(remoteProvider) {
-  remoteProvider.register('html-pdf');
+    remoteProvider.register('html-pdf');
 }]);
 
 // Make fs an angular module
 app.config(['remoteProvider', function(remoteProvider) {
-  remoteProvider.register('fs');
+    remoteProvider.register('fs');
 }]);

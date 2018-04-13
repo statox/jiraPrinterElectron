@@ -12,5 +12,5 @@ angular.module('app').factory("Issue", function($http) {
                 timeout: 2 * 60 * 1000
             });
         }
-    }
+    };
 });

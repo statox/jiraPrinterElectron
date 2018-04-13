@@ -69,7 +69,7 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
                     // and add an entry in $scope.jiraLog which will be displayed to the user
                     issue.downloadSuccess = false;
 
-                    if (Object.keys($scope.jiraLog).indexOf(err.status) == -1) {
+                    if (Object.keys($scope.jiraLog).indexOf(err.status) === -1) {
                         var message = "";
                         switch (err.status) {
                             case 400:
@@ -112,7 +112,7 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
             generatePdfDiv(downloadedIssues);
             $scope.showPDF = true;
         });
-    }
+    };
 
     $scope.removeAllIssues = function () {
         $scope.showPDF = false;
@@ -124,14 +124,14 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
 
         // Store the new state of $scope.issues in locale storage
         storageService.setIssues($scope.issues);
-    }
+    };
 
     $scope.removeIssue = function(issueID) {
         $scope.issues = $scope.issues.filter((i) => {return i.id !== issueID;});
 
         // Store the new state of $scope.issues in locale storage
         storageService.setIssues($scope.issues);
-    }
+    };
 
     $scope.addIssue = function() {
         var inputIssueID = $scope.inputIssueID;
@@ -144,7 +144,7 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
 
         // Store the new state of $scope.issues in locale storage
         storageService.setIssues($scope.issues);
-    }
+    };
 
     var generatePdfDiv = function(issues) {
         var formattedIssues = [];
@@ -158,7 +158,7 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
                 icon: issue.fields.issuetype.iconUrl,
                 priority: issue.fields.priority,
                 avatar: issue.fields.assignee.avatarUrls["48x48"]
-            }
+            };
             if(issue.fields.fixVersions.length > 0) {
                 formattedIssue.version = issue.fields.fixVersions[0].name;
             }
@@ -200,21 +200,23 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
         // Generate the PDF
         var tmpPath = "./issues.pdf";
         pdf.create(content, options).toFile(tmpPath, function(err, res) {
-            if (err) return console.log(err);
+            if (err) {
+                return console.log(err);
+            }
             console.log(res);
         });
 
         var dialogOptions = {
             title: "Save PDF file",
             defaultPath: "issues.pdf"
-        }
+        };
 
         var callbackSuccess = function(tmpPath) {
             fs.unlink(tmpPath);
-        }
+        };
 
         var callbackFailure = function() {
-        }
+        };
 
         // Let the user choose where to save the file
         dialog.showSaveDialog(dialogOptions, (destinationPath) => {
