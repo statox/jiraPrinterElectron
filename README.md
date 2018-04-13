@@ -1,4 +1,4 @@
-# JiraPrinter
+# JiraPrinter [![CodeFactor](https://www.codefactor.io/repository/github/statox/jiraprinterelectron/badge)](https://www.codefactor.io/repository/github/statox/jiraprinterelectron) [![Build Status](https://travis-ci.org/statox/jiraPrinterElectron.svg?branch=master)](https://travis-ci.org/statox/jiraPrinterElectron)
 
 Print your Jira issues for your Agile Scrum board!
 
