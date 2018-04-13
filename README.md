@@ -59,9 +59,8 @@ platform you want to build your application.
 * [GruntJS](https://gruntjs.com/) - To run tasks as building the application
 * [AngularJS](https://angularjs.org/)- As the MVC framework
 * [Bootstrap](https://getbootstrap.com/) - As the front end library
-* [html2canvas](https://html2canvas.hertzen.com/) - A javascript library to take
-  screenshots
-* [pdfmake](http://pdfmake.org/#/) - To create a PDF in pure JavaScript
+* [angular-electron](https://github.com/ozsay/angular-electron) - A javascript library to wrap Electron object as Angular services
+* [node-html-pdf](https://github.com/marcbachmann/node-html-pdf/) - A node module to generate PDF files from HTML
 
 ## TODO
 
