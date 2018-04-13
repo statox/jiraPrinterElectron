@@ -1,0 +1,46 @@
+module.exports = {
+    "parserOptions": {
+        "ecmaVersion": 6,
+    },
+    // Allow some libraries used by the project
+    "env": {
+        "browser": true,
+        "node": true,
+    },
+    // Make the "no-undef" rule ignore the contants of the project
+    "globals": {
+        "angular": true,
+        "app": true,
+        "round": true,
+    },
+    // the recommended settings are pretty sane, use them and extends
+    // them with our own config (see rules)
+    "extends": "eslint:recommended",
+    "rules": {
+        "indent": [
+            "error",
+            4,
+            {"SwitchCase": 1}
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "curly": [
+            "error",
+            "all"
+        ],
+        "eqeqeq": [
+            "error",
+            "always",
+            {"null": "ignore"}
+        ],
+        "no-undef": [
+            "error"
+        ]
+    }
+};
