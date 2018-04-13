@@ -28,7 +28,10 @@ angular.module('app').service("pdfService", ['fs', 'html-pdf', 'dialog', functio
             }
         };
 
-        // Generate the PDF
+        // Generate the PDF file in the application directory
+        // We will then ask for the user where they want to write the file
+        // and then copy "./issues.pdf" in the desired location
+        // TODO: make it a stream that we don't write to FS
         var tmpPath = "./issues.pdf";
         pdf.create(content, options).toFile(tmpPath, function(err) {
             if (err) {
@@ -36,16 +39,18 @@ angular.module('app').service("pdfService", ['fs', 'html-pdf', 'dialog', functio
             }
         });
 
-
+        // Options of the window used to save the file to the FS
         var dialogOptions = {
             title: "Save PDF file",
             defaultPath: "issues.pdf"
         };
 
+        // Used when the file as been successfully copied
         var callbackSuccess = function(tmpPath) {
             fs.unlink(tmpPath);
         };
 
+        // Used when there is an error while copying the file
         var callbackFailure = function() {
             raiseErrorNotification();
         };
