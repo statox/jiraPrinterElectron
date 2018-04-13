@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'html-pdf', 'fs', function($scope, $q, storageService, Issue, pdf, fs) {
+app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'html-pdf', 'fs', 'dialog', function($scope, $q, storageService, Issue, pdf, fs, dialog) {
 
     var initializeData = function() {
         // Do not display the printed issues before we got
@@ -176,6 +176,7 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
         }
     };
 
+    // TODO: Put that into a service
     $scope.generatePDF = function() {
         // Get the HTML containing the issues
         var issueContainerElement = document.getElementById('pdf');
@@ -197,10 +198,38 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
         };
 
         // Generate the PDF
-        // TODO: let the user choose where to write the PDF on the filesystem
-        pdf.create(content, options).toFile('./issues.pdf', function(err, res) {
+        var tmpPath = "./issues.pdf";
+        pdf.create(content, options).toFile(tmpPath, function(err, res) {
             if (err) return console.log(err);
-            console.log(res); // { filename: '/app/businesscard.pdf' }
+            console.log(res);
+        });
+
+        var dialogOptions = {
+            title: "Save PDF file",
+            defaultPath: "issues.pdf"
+        }
+
+        var callbackSuccess = function(tmpPath) {
+            fs.unlink(tmpPath);
+        }
+
+        var callbackFailure = function() {
+        }
+
+        // Let the user choose where to save the file
+        dialog.showSaveDialog(dialogOptions, (destinationPath) => {
+            if (destinationPath === undefined){
+                callbackFailure("Error");
+                return;
+            }
+
+            var source = fs.createReadStream(tmpPath);
+            var dest = fs.createWriteStream(destinationPath);
+
+            source.pipe(dest);
+            source.on('end', callbackSuccess(tmpPath));
+            source.on('error', callbackFailure(err));
+
         });
     };
 
