@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'html-pdf', 'fs', 'dialog', function($scope, $q, storageService, Issue, pdf, fs, dialog) {
+app.controller('MainController', ['$scope', '$q', 'storageService', 'pdfService', 'Issue', function($scope, $q, storageService, pdfService, Issue) {
 
     var initializeData = function() {
         // Do not display the printed issues before we got
@@ -176,63 +176,13 @@ app.controller('MainController', ['$scope', '$q', 'storageService', 'Issue', 'ht
         }
     };
 
-    // TODO: Put that into a service
     $scope.generatePDF = function() {
         // Get the HTML containing the issues
         var issueContainerElement = document.getElementById('pdf');
         var html = issueContainerElement.innerHTML;
 
-        // Get our css stylesheet
-        var css = fs.readFileSync('scripts/index.css', 'utf8');
-
-        // Put together the style and the issues
-        var content = "<style>" + css + "</style>";
-        content += html;
-
-        // Options for the PDF generation
-        var options = {
-            format: 'A4',
-            border: {
-                top: '15mm'
-            }
-        };
-
-        // Generate the PDF
-        var tmpPath = "./issues.pdf";
-        pdf.create(content, options).toFile(tmpPath, function(err, res) {
-            if (err) {
-                return console.log(err);
-            }
-            console.log(res);
-        });
-
-        var dialogOptions = {
-            title: "Save PDF file",
-            defaultPath: "issues.pdf"
-        };
-
-        var callbackSuccess = function(tmpPath) {
-            fs.unlink(tmpPath);
-        };
-
-        var callbackFailure = function() {
-        };
-
-        // Let the user choose where to save the file
-        dialog.showSaveDialog(dialogOptions, (destinationPath) => {
-            if (destinationPath === undefined){
-                callbackFailure("Error");
-                return;
-            }
-
-            var source = fs.createReadStream(tmpPath);
-            var dest = fs.createWriteStream(destinationPath);
-
-            source.pipe(dest);
-            source.on('end', callbackSuccess(tmpPath));
-            source.on('error', callbackFailure(err));
-
-        });
+        // Call the service generating the PDF file
+        pdfService.generatePDF(html);
     };
 
     initializeData();
