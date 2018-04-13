@@ -5,6 +5,13 @@
 angular.module('app').service("pdfService", ['fs', 'html-pdf', 'dialog', function(fs, pdf, dialog) {
     var pdfService = {};
 
+    var  raiseErrorNotification = function() {
+        new Notification('Oops something went wrong', {
+            body: 'An error happened while generating your PDF file. Sorry :('
+        });
+    };
+
+
     pdfService.generatePDF = function(html) {
         // Get our css stylesheet
         var css = fs.readFileSync('scripts/index.css', 'utf8');
@@ -23,9 +30,9 @@ angular.module('app').service("pdfService", ['fs', 'html-pdf', 'dialog', functio
 
         // Generate the PDF
         var tmpPath = "./issues.pdf";
-        pdf.create(content, options).toFile(tmpPath, function(err, res) {
+        pdf.create(content, options).toFile(tmpPath, function(err) {
             if (err) {
-                console.log(err);
+                raiseErrorNotification();
             }
         });
 
@@ -40,6 +47,7 @@ angular.module('app').service("pdfService", ['fs', 'html-pdf', 'dialog', functio
         };
 
         var callbackFailure = function() {
+            raiseErrorNotification();
         };
 
         // Let the user choose where to save the file
