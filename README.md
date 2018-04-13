@@ -65,7 +65,8 @@ platform you want to build your application.
 ## TODO
 
 The app is a work in progress here is some things which may be done in the
-future
+future. For a complete list of things to be done you can have a look at the
+[issue page](../../issues).
 
 * Write proper tests
 * Don't save password in plain text (maybe use [keytar](https://github.com/atom/node-keytar))
