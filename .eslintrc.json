@@ -1,17 +1,17 @@
-module.exports = {
+{
     "parserOptions": {
-        "ecmaVersion": 6,
+        "ecmaVersion": 6
     },
     // Allow some libraries used by the project
     "env": {
         "browser": true,
-        "node": true,
+        "node": true
     },
     // Make the "no-undef" rule ignore the contants of the project
     "globals": {
         "angular": true,
         "app": true,
-        "round": true,
+        "round": true
     },
     // the recommended settings are pretty sane, use them and extends
     // them with our own config (see rules)
@@ -43,4 +43,4 @@ module.exports = {
             "error"
         ]
     }
-};
+}
