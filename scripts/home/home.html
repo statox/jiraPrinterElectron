@@ -103,11 +103,11 @@
                                        - and find a way to make them work
                                        -->
                                     <span ng-show="issue.downloadSuccess !== undefined">
-                                        <img ng-if="issue.downloadSuccess" src="scripts/assets/glyphicons-207-ok.png">
-                                        <img ng-if="!issue.downloadSuccess" src="scripts/assets/glyphicons-208-remove.png">
+                                        <i ng-if="issue.downloadSuccess" class="fa fa-check"></i>
+                                        <i ng-if="!issue.downloadSuccess" class="fa fa-times"></i>
                                     </span>
                                     <span ng-show="issue.downloading !== undefined && issue.downloadSuccess === undefined">
-                                        <img class="rotating-img" src="scripts/assets/glyphicons-82-refresh.png">
+                                        <i class="rotating-img fa fa-refresh"></i>
                                     </span>
 
                                     <span>{{issue.id}}</span>
