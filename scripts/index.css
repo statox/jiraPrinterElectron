@@ -11,8 +11,8 @@
     display: flex;
     justify-content: center;
     padding: 3px;
-    height: 240px;
-    font-size: 24px;
+    height: 280px;
+    font-size: 20px;
 }
 
 .issue-container>div {
@@ -28,9 +28,9 @@
     margin: 0;
     overflow: hidden;
     position: relative;
-    height: 233px;
+    height: 270px;
     padding: 20px;
-    width: 335px;
+    width: 370px;
     page-break-inside: avoid;
 }
 
@@ -52,9 +52,8 @@
     margin: 10px 0;
     overflow: hidden;
     position: relative;
-    font-size: 16px;
     line-height: 1.3em;
-    max-height: 90px;
+    max-height: 150px;
 }
 
 .issue-footer {
@@ -83,7 +82,7 @@
     color: #707070;
     line-height: 1em;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .row-end {
@@ -126,7 +125,7 @@
     left: 1px;
     position: absolute;
     top: 0;
-    border-left: 5px solid #fff;
+    border-left: 10px solid #fff;
 }
 
 .issue-color.Basse {
