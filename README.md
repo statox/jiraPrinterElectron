@@ -1,3 +1,9 @@
+# Do not use this project
+
+- 🌍 Printing Jira tickets to have a real life board is a bad idea. You shouldn't waste resources to duplicate something which already works well on a screen, the Earth don't need that.
+- ☠️  This project is untested, unmaintained, undocumented and was written a long time ago by someone who didn't know how to write Javascript, chances are that the app is at best bugged at worst pretty dangerous (I don't remember about it but this readme says in the TODO section `Don't save password in plain text` that should be enough to make you not use this app)
+- ✨ I keep this code on Github only to remember what I have done in my dev journey, don't reuse this code.
+
 # JiraPrinter
 [![CodeFactor](https://www.codefactor.io/repository/github/statox/jiraprinterelectron/badge)](https://www.codefactor.io/repository/github/statox/jiraprinterelectron)
 [![Build Status](https://travis-ci.org/statox/jiraPrinterElectron.svg?branch=master)](https://travis-ci.org/statox/jiraPrinterElectron)
